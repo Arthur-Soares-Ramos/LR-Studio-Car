@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LR Studio Car — estética automotiva, cuidado premium e acabamento impecável.">
+<title>LR Studio Car | Estética Automotiva</title>
+<link rel="icon" type="image/png" href="imagens/logo.png">
+<style>
+:root {
+  --site-primary: #e50914;
+  --site-secondary: #171717;
+  --site-background: #090909;
+  --site-on-primary: #ffffff;
+  --site-on-secondary: #ffffff;
+  --site-on-background: #f5f5f5;
+  --site-font-body: Inter, "Segoe UI", Arial, sans-serif;
+  --site-font-heading: "Arial Narrow", Impact, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  --muted: #a6a6a6;
+  --line: #2c2c2c;
+  --panel: #121212;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: light-dark(#f5f5f5, var(--site-background)); color: light-dark(#171717, var(--site-on-background)); font-family: var(--site-font-body); }
+.site-root { min-height: 100vh; background-color: var(--site-background); color: var(--site-on-background); overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+.container { width: min(1160px, calc(100% - 44px)); margin: 0 auto; }
+.topbar { position: sticky; top: 0; z-index: 10; background: rgba(9,9,9,.94); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.09); }
+.nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .04em; }
+.brand-mark { width: 46px; height: 46px; object-fit: cover; border-radius: 50%; border: 1px solid #393939; }
+.brand-name { font-size: 15px; line-height: 1.1; }
+.brand-name span { display: block; color: var(--site-primary); font-size: 10px; letter-spacing: .22em; margin-top: 5px; }
+.nav-links { display: flex; align-items: center; gap: 28px; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #d2d2d2; }
+.nav-links a:hover { color: #fff; }
+.btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 20px; background: var(--site-primary); color: white; border: 1px solid var(--site-primary); border-radius: calc(3px * var(--site-radius-scale)); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: transform .2s, background .2s; }
+.btn:hover { background: #ff1d28; transform: translateY(-2px); }
+.btn.outline { background: transparent; border-color: #555; }
+.btn.outline:hover { border-color: var(--site-primary); }
+.menu-toggle { display: none; color: white; border: 1px solid #444; background: transparent; padding: 8px 11px; }
+.hero { position: relative; min-height: 620px; display: flex; align-items: center; isolation: isolate; background: radial-gradient(ellipse at 75% 45%, rgba(229,9,20,.18), transparent 37%), linear-gradient(110deg,#090909 20%,#101010 60%,#090909); }
+.hero:before { content:""; position:absolute; z-index:-1; right:-4%; top:6%; width:58%; height:88%; opacity:var(--site-decoration-opacity); background:linear-gradient(145deg, transparent 28%, rgba(255,255,255,.035) 28.2%, transparent 28.7%), linear-gradient(25deg, transparent 52%, rgba(229,9,20,.16) 52.2%, transparent 52.8%); clip-path:polygon(15% 35%,75% 10%,100% 37%,84% 75%,30% 92%,0 65%); }
+.hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 42px; padding: 80px 0; }
+.eyebrow { display: flex; align-items: center; gap: 10px; color: #ff4650; text-transform: uppercase; letter-spacing: .22em; font-size: 10px; font-weight: 800; }
+.eyebrow:before { content:""; width: 30px; height: 2px; background: var(--site-primary); }
+h1,h2,h3,p { margin-top: 0; }
+h1 { font-family: var(--site-font-heading); font-size: clamp(48px,6.3vw,82px); text-transform: uppercase; line-height: .96; letter-spacing: -.035em; margin: 22px 0; }
+h1 span { color: var(--site-primary); }
+.hero-copy { max-width: 520px; color: #b8b8b8; line-height: 1.8; font-size: 15px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.hero-note { margin-top: 28px; display: flex; align-items: center; gap: 12px; color: #888; font-size: 11px; letter-spacing: .05em; }
+.hero-note strong { color: #fff; }
+.hero-logo { width: min(100%, 470px); justify-self: end; border-radius: 50%; filter: drop-shadow(0 25px 45px rgba(0,0,0,.55)); }
+.stats { border-top: 1px solid #282828; border-bottom: 1px solid #282828; background: #0d0d0d; }
+.stats-grid { display: grid; grid-template-columns: repeat(3,1fr); }
+.stat { padding: 26px 20px; text-align: center; border-right: 1px solid #282828; }
+.stat:last-child { border: 0; }
+.stat strong { display: block; font-family: var(--site-font-heading); font-size: 30px; color: white; }
+.stat span { display: block; margin-top: 5px; font-size: 10px; text-transform: uppercase; letter-spacing: .16em; color: #929292; }
+.section { padding: 92px 0; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin-bottom: 34px; }
+.section h2 { font-family: var(--site-font-heading); font-size: calc(clamp(34px,4.3vw,52px) * var(--site-heading-scale)); line-height: 1; text-transform: uppercase; margin: 12px 0 0; }
+.section h2 span { color: var(--site-primary); }
+.section-intro { max-width: 390px; color: var(--muted); font-size: 13px; line-height: 1.8; margin-bottom: 0; }
+.services { background: #f2f2f2; color: #111; }
+.services .section-intro { color: #666; }
+.service-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.service-card { position: relative; min-height: 245px; padding: 28px; background: #fff; border: 1px solid #dedede; transition: transform .2s, border .2s; }
+.service-card:hover { transform: translateY(-5px); border-color: var(--site-primary); }
+.service-number { font-size: 10px; color: var(--site-primary); letter-spacing: .16em; font-weight: 900; }
+.service-icon { display: grid; place-items: center; width: 46px; height: 46px; background: #fbe8e9; color: var(--site-primary); margin: 25px 0 18px; font-size: 22px; }
+.service-card h3 { font-size: 18px; margin-bottom: 10px; }
+.service-card p { color: #696969; font-size: 12px; line-height: 1.7; margin: 0; }
+.service-card:after { content:"↗"; position:absolute; top:27px; right:28px; font-size: 20px; color: #bcbcbc; }
+.results { background: #0b0b0b; }
+.result-grid { display: grid; grid-template-columns: 1.2fr .8fr .8fr; gap: 14px; }
+.result-card { min-height: 270px; position: relative; overflow: hidden; background: #171717; border: 1px solid #282828; }
+.result-art { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background: radial-gradient(ellipse at 50% 85%, rgba(229,9,20,.22), transparent 50%), linear-gradient(145deg,#242424,#090909 70%); }
+.result-art:before { content:""; width:82%; height:34%; border-radius: 55% 45% 22% 18%; background: linear-gradient(180deg,#4a4a4a,#111 70%); border-top: 2px solid #777; transform: skewX(-13deg) rotate(-4deg); box-shadow: 0 20px 25px #000; }
+.result-art:after { content:""; position:absolute; width:48%; height:15%; top:38%; left:27%; border-radius: 70% 70% 0 0; border: 2px solid #5c5c5c; border-bottom: 0; transform: skewX(-13deg) rotate(-4deg); }
+.result-card:nth-child(2) .result-art { background: radial-gradient(ellipse at 45% 80%,rgba(255,255,255,.1),transparent 45%),linear-gradient(135deg,#292929,#090909); }
+.result-card:nth-child(2) .result-art:before { background:linear-gradient(180deg,#8b8b8b,#292929 75%); }
+.result-card:nth-child(3) .result-art { background:radial-gradient(ellipse at 50% 80%,rgba(229,9,20,.22),transparent 45%),linear-gradient(135deg,#1d1d1d,#080808); }
+.result-label { position:absolute; left:20px; right:20px; bottom:18px; z-index:1; }
+.result-label small { color:#ff4c55; font-size:9px; text-transform:uppercase; letter-spacing:.17em; font-weight:800; }
+.result-label h3 { color:white; font-size:17px; margin:7px 0 0; }
+.result-caption { color:#888; font-size:11px; line-height:1.7; margin-top:20px; }
+.why { background: #141414; }
+.why-grid { display:grid; grid-template-columns: .9fr 1.1fr; gap:70px; align-items:center; }
+.why-panel { border-left:3px solid var(--site-primary); padding: 10px 0 10px 26px; }
+.why-panel p { color:#b1b1b1; font-size:14px; line-height:1.9; }
+.why-list { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.why-item { border-top:1px solid #363636; padding-top:17px; }
+.why-item strong { display:block; font-size:13px; margin-bottom:8px; }
+.why-item p { font-size:11px; line-height:1.7; color:#929292; margin:0; }
+.process { background:#f1f1f1; color:#151515; }
+.process .section-intro { color:#666; }
+.steps { display:grid; grid-template-columns:repeat(3,1fr); gap:25px; }
+.step { border-top:2px solid #ccc; padding-top:20px; }
+.step-num { color:var(--site-primary); font-family:var(--site-font-heading); font-size:34px; }
+.step h3 { font-size:16px; margin:10px 0; }
+.step p { font-size:12px; color:#696969; line-height:1.8; }
+.contact { background: radial-gradient(ellipse at 90% 50%,rgba(229,9,20,.13),transparent 35%),#090909; }
+.contact-box { display:grid; grid-template-columns:1fr .8fr; gap:55px; align-items:center; padding:45px; border:1px solid #333; background:rgba(20,20,20,.8); }
+.contact-box p { color:#aaa; font-size:13px; line-height:1.8; max-width:470px; }
+.contact-details { display:grid; gap:13px; margin-top:24px; color:#ccc; font-size:12px; }
+.contact-details span { display:flex; gap:10px; align-items:center; }
+.contact-form { display:grid; gap:12px; }
+.contact-form input,.contact-form select,.contact-form textarea { width:100%; background:#090909; color:white; border:1px solid #383838; padding:14px; border-radius:2px; outline:none; }
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus { border-color:var(--site-primary); }
+.contact-form textarea { min-height:85px; resize:vertical; }
+.form-note { font-size:10px; color:#777; line-height:1.5; }
+footer { padding:25px 0; border-top:1px solid #252525; background:#070707; }
+.footer-inner { display:flex; justify-content:space-between; align-items:center; gap:18px; color:#777; font-size:10px; }
+.footer-inner strong { color:#eee; }
+.footer-links { display:flex; gap:18px; }
+@media (max-width: 800px) {
+  .nav-links { display:none; position:absolute; top:77px; left:0; right:0; padding:22px; flex-direction:column; background:#0b0b0b; border-bottom:1px solid #333; }
+  .nav-links.open { display:flex; }
+  .menu-toggle { display:block; }
+  .nav > .btn { display:none; }
+  .hero-grid { grid-template-columns:1fr; gap:20px; padding:65px 0 55px; }
+  .hero-logo { width:min(78%,360px); justify-self:center; grid-row:1; }
+  .hero-content { text-align:center; }
+  .hero-content .eyebrow,.hero-actions,.hero-note { justify-content:center; }
+  .hero-content .eyebrow:before { display:none; }
+  .hero-copy { margin-left:auto; margin-right:auto; }
+  .service-grid { grid-template-columns:1fr 1fr; }
+  .result-grid { grid-template-columns:1fr 1fr; }
+  .result-card:first-child { grid-column:span 2; }
+  .why-grid,.contact-box { grid-template-columns:1fr; gap:32px; }
+  .section-head { align-items:start; flex-direction:column; }
+}
+@media (max-width: 520px) {
+  .container { width:calc(100% - 30px); }
+  .section { padding:65px 0; }
+  .stats-grid { grid-template-columns:1fr; }
+  .stat { border-right:0; border-bottom:1px solid #282828; padding:18px; }
+  .stat:last-child { border-bottom:0; }
+  .service-grid,.result-grid,.steps,.why-list { grid-template-columns:1fr; }
+  .result-card:first-child { grid-column:auto; }
+  .result-card { min-height:235px; }
+  .contact-box { padding:25px 18px; }
+  .footer-inner { align-items:flex-start; flex-direction:column; }
+  h1 { font-size:52px; }
+}
+</style>
+</head>
+<body>
+<div class="site-root" id="inicio">
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="#inicio" aria-label="LR Studio Car - início">
+      <img class="brand-mark" src="imagens/logo.png" alt="Logo LR Studio Car">
+      <div class="brand-name">LR STUDIO CAR<span>DETALHAMENTO AUTOMOTIVO</span></div>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
+      <a href="#servicos">Serviços</a><a href="#diferenciais">Diferenciais</a><a href="#contato">Contato</a>
+    </nav>
+    <a class="btn" href="#contato">Entre em contato ↗</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <div class="eyebrow">Estética automotiva</div>
+      <h1>Não é apenas<br>Estética<br><span>É excelência</span>.</span></h1>
+      <p class="hero-copy">Meu nome é Thiago, estou a mais de 5 anos atuando em Patos de Minas e região na área de estética automotiva, venha conhecer um pouco mais do meu trabalho.</p>
+      <div class="hero-actions"><a class="btn" href="#contato">Quero cuidar do meu carro ↗</a><a class="btn outline" href="#servicos">Conheça os serviços</a></div>
+      <div class="hero-note"><strong>LR STUDIO CAR</strong><span>·</span><span>Detalhamento feito com atenção de verdade.</span></div>
+    </div>
+    <img class="hero-logo" src="imagens/logo.png" alt="Logotipo oficial LR Studio Car">
+  </div>
+</section>
+<div class="stats"><div class="container stats-grid">
+  <div class="stat"><strong>1 por 1</strong><span>Cuidado individualizado</span></div>
+  <div class="stat"><strong>100%</strong><span>Atenção aos detalhes</span></div>
+  <div class="stat"><strong>LR Studio Car</strong><span>Paixão por automóveis</span></div>
+</div></div>
+<section class="section services" id="servicos">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow">O que fazemos</div><h2>Serviços para<br><span>cada detalhe.</span></h2></div><p class="section-intro">Escolha o cuidado ideal para o seu veículo. Cada serviço é realizado com atenção ao acabamento e às necessidades de cada carro.</p></div>
+    <div class="service-grid">
+      <article class="service-card"><span class="service-number">01 — GERAL</span><div class="service-icon">✦</div><h3>Lavagem detalhada</h3><p>Limpeza cuidadosa da carroceria, rodas e detalhes externos e internos para recuperar aquele aspecto de carro bem cuidado.</p></article>
+      <article class="service-card"><span class="service-number">02 — PINTURA</span><div class="service-icon">◈</div><h3>Polimento</h3><p>Tratamento da pintura para realçar o brilho e melhorar a aparência de marcas superficiais, conforme avaliação.</p></article>
+      <article class="service-card"><span class="service-number">03 — PROTEÇÃO</span><div class="service-icon">⬡</div><h3>Vitrificação</h3><p>Aplicação de uma camada protetora rígida e transparente sobre a lataria.</p></article>
+      <article class="service-card"><span class="service-number">04 — COUROS</span><div class="service-icon">⌁</div><h3>Restauro e pintura em couros</h3><p>Pintura, hidratação e restauração para renovar o couro.</p></article>
+      <article class="service-card"><span class="service-number">05 — PROTEÇÃO</span><div class="service-icon">✧</div><h3>PPF</h3><p>Película de proteção que preserva a pintura de riscos e impactos.</p></article>
+      <article class="service-card"><span class="service-number">06 — SOB CONSULTA</span><div class="service-icon">＋</div><h3>Cuidados personalizados</h3><p>Conte o que seu carro precisa e conversamos sobre a melhor opção para o estado e o uso do veículo.</p></article>
+    </div>
+  </div>
+</section>
+<section class="section why" id="diferenciais">
+  <div class="container why-grid">
+    <div><div class="eyebrow">Por que LR Studio Car?</div><h2>Não é só lavar.<br>É <span>valorizar.</span></h2><div class="why-panel"><p>Cada veículo merece atenção. Nosso foco é entregar um serviço cuidadoso, explicar as opções com clareza e buscar um acabamento que faça você gostar ainda mais do seu carro.</p></div></div>
+    <div class="why-list">
+      <div class="why-item"><strong>01. Atenção aos detalhes</strong><p>O cuidado vai além das áreas mais visíveis.</p></div>
+      <div class="why-item"><strong>02. Serviço sob medida</strong><p>Indicação conforme as condições do veículo.</p></div>
+      <div class="why-item"><strong>03. Transparência</strong><p>Converse sobre o serviço antes de agendar.</p></div>
+      <div class="why-item"><strong>04. Paixão por carros</strong><p>Respeito pelo seu veículo em cada etapa.</p></div>
+    </div>
+  </div>
+</section>
+<section class="section process">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow">Simples e direto</div><h2>Seu próximo cuidado<br><span>em 3 passos.</span></h2></div><p class="section-intro">Sem complicação: fale com a gente, escolha o serviço e combine o melhor horário.</p></div>
+    <div class="steps">
+      <article class="step"><div class="step-num">01</div><h3>Siga-nos no Instragram</h3><p>Clique no botão abaixo e de uma olhada em meus trabalhos.</p></article>
+      <article class="step"><div class="step-num">02</div><h3>Entre em contato</h3><p>Mande mensagem eu qualquer rede social para agendar.</p></article>
+      <article class="step"><div class="step-num">03</div><h3>Divulgue os trabalhos</h3><p>Se gostou, recomende nossa empresa para seus amigos e familiares.</p></article>
+    </div>
+  </div>
+</section>
+<section class="section contact" id="contato">
+  <div class="container">
+    <div class="instagram-box">
+      <div class="eyebrow">Siga a LR Studio Car</div>
+      <h2>Veja nossos trabalhos<br><span>no Instagram.</span></h2>
+      <p>Acompanhe nossos serviços, confira os resultados e fique por dentro das novidades da LR Studio Car.</p>
+      <a class="btn" href="https://www.instagram.com/loures_thiago/" target="_blank" rel="noopener noreferrer">Acessar Instagram ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="container footer-inner"><div><strong>LR STUDIO CAR</strong> · DETALHAMENTO AUTOMOTIVO</div><div class="footer-links"><a href="#inicio">Voltar ao topo ↑</a><a href="#servicos">Serviços</a><a href="#contato">Contato</a></div><div>© <span id="year"></span> LR Studio Car</div></div></footer>
+</div>
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+const isOpen = navLinks.classList.toggle('open');
+menuToggle.setAttribute('aria-expanded', String(isOpen));
+menuToggle.textContent = isOpen ? '✕' : '☰';
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+link.addEventListener('click', () => {
+navLinks.classList.remove('open');
+menuToggle.setAttribute('aria-expanded', 'false');
+menuToggle.textContent = '☰';
+});
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+
+</script>
+
+</body>
+
+</html>
